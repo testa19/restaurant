@@ -1,0 +1,21 @@
+div class="reservation"
+
+  h2
+    ' Restaurant name:
+    = link_to reservation.restaurant.name, restaurant_path(reservation.restaurant)
+  h2  Table: #{reservation.table.description}
+
+  h3 Information:
+  p = reservation.customer
+  p = reservation.info
+
+  - if params[:action] == "show"
+    h3 Reservations:
+    //= link_to 'Reservations', restaurant_reservations_path(table.restaurant)
+    //= render partial: "reservations/reservations", collection: table.reservations
+
+    = link_to 'Edit', edit_restaurant_reservation_path(reservation.restaurant)
+    p
+    = link_to 'Back', restaurant_reservations_path(reservation.restaurant)
+  - unless params[:action] == "show"
+    = link_to 'Show', restaurant_reservation_path(reservation.restaurant, reservation)

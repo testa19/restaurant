@@ -1,0 +1,10 @@
+p#notice =notice
+
+div.reserve-list
+  h1 Reservations
+  =render 'list'
+
+div.controlls
+  = link_to 'New Reservation', new_restaurant_reservation_path
+  p
+  = link_to 'Restaurants', restaurants_path

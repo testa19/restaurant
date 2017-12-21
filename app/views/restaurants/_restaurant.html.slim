@@ -1,0 +1,26 @@
+div class="restaurant"
+
+  h2  = restaurant.name
+
+  h3 Description:
+  p = restaurant.description
+
+  - if params[:action] == "show"
+    h3 = link_to 'Tables:', restaurant_tables_path(restaurant)
+    p
+    - restaurant.tables.each do |table|
+      p
+        = link_to table.description, restaurant_table_path(table.restaurant, table)
+    h3 = link_to 'Reservations', restaurant_reservations_path(restaurant)
+
+    - restaurant.reservations.each do |reservation|
+      p
+        = link_to reservation.customer, restaurant_reservation_path(reservation.restaurant, reservation)
+    / we could render - if !restaurant.reservations.blank?
+      / = render partial: "reservations/reservation", collection: restaurant.reservations
+    p
+    = link_to 'Edit', edit_restaurant_path(restaurant)
+    p
+    = link_to 'Back', restaurants_path
+  - unless params[:action] == "show"
+    = link_to 'Show', restaurant

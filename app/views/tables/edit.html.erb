@@ -1,0 +1,6 @@
+<h1>Editing Table</h1>
+
+<%= render 'form', table: @table %>
+
+<%= link_to 'Show', restaurant_table_path(@table.restaurant) %> |
+<%= link_to 'Back', restaurant_tables_path %>
